@@ -23,6 +23,7 @@
     "merge-graphql-schemas": "^1.5.8",
     "morgan": "^1.9.1",
     "nodemon": "^1.18.11",
+    "request": "^2.88.0",
     "request-promise": "^4.2.4"
   },
   "devDependencies": {

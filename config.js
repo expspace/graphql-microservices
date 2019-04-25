@@ -1,4 +1,6 @@
 export const BASE_SERVICE_URLS = {
-     baseGA4GHUrl : 'http://localhost:8000/',
-     baseUrlNodeFhirMongo : 'http://localhost:3000/3_0_1'
+     localGA4GH : 'http://localhost:8000/',
+
+     localGofhir : 'http://localhost:3001',
+     localNodeFhirMongo : 'http://localhost:3000/3_0_1'
 };

@@ -1,12 +1,13 @@
 
 // The User schema.
-import PatientService from "../../../services/patient";
-import VariantService from "../../../services/variant";
+// import PatientService from "../../../services/patient-nodemongo";
+import PatientService from "../../../services/patient-gofhir";
+import VariantService from "../../../services/variant-ga4gh";
 
 export default {
     Query: {
         patient(_, args) {
-            console.log('patient resolver');
+            // console.log('patient resolver');
             return PatientService.getPatient(args);
         },
 
@@ -17,9 +18,8 @@ export default {
 
     Patient: {
         variants(patient, args) {
-            console.log('variant resolver');
-            console.log(patient.id);
-            return VariantService.getVariants(patient, args) ;
+            // console.log('variant resolver');
+            return VariantService.getVariants(patient, args);
         },
     },
 
