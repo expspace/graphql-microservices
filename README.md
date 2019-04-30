@@ -4,7 +4,12 @@ GraphQL API layer which is used to combine data from separate microservices. Que
 server and then individual variant information is sent to the [ga4gh](https://github.com/ga4gh/ga4gh-server) API.  
 
 ### Installation
-
+```$xslt
+git clone https://github.com/expspace/graphql-microservices.git
+cd graphql-microservices
+npm install
+npm start
+```
 
 ### TODOs
 
