@@ -7,8 +7,7 @@ server and then individual variant information is sent to the [ga4gh](https://gi
 ```$xslt
 git clone https://github.com/expspace/graphql-microservices.git
 cd graphql-microservices
-npm install
-npm start
+sudo docker-compose up
 ```
 
 ### TODOs
