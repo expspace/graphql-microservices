@@ -9,11 +9,24 @@ git clone https://github.com/expspace/graphql-microservices.git
 cd graphql-microservices
 sudo docker-compose up
 ```
+### FHIR DB
+
+To load the clinical data (taken from the Synthetic Mass subsample of 1000 synthetic patients), run the following:
+
+```$xslt
+cd data/ingest
+tar -xzvf mongo_fhir_dump.tgz
+mongorestore dump
+```
 
 ### TODOs
 
 - [ ] include graphql query examples
-- [ ] containerization
+- [ ] containerize GA4GH
 - [ ] init script for service endpoint configuration 
 - [ ] init script for gofhir to ga4gh ID map 
 - [ ] architecture diagram 
+
+### Known issues
+
+- graphql-app to gofhir inter container communication
