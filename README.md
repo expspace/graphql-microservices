@@ -29,4 +29,3 @@ mongorestore dump
 
 ### Known issues
 
-- graphql-app to gofhir inter container communication
