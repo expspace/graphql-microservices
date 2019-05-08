@@ -13,11 +13,9 @@ export default {
 
         let url = `${baseUrls.localGofhir}/Patient` + (query? `?${query}`: "");
 
-        let patientList = rp(url)
+        return rp(url)
             .then(response => JSON.parse(response))
-            .then(response => response.entry.map(patient => patient.resource))
-
-        return patientList;
+            .then(response => response.entry.map(patient => patient.resource));
     }
 }
 
