@@ -1,0 +1,97 @@
+query{
+  patient(id: "5c8518d9e240900001077865"){
+    resourceType
+    id
+    gender
+    deceasedDateTime
+    birthDate
+    resourceType
+    name {
+      use
+      family
+      given
+    }
+#    extension {
+#      url
+#      valueCodeableConcept {
+#        text
+#        coding {
+#          system
+#          code
+#          display
+#        }
+#      }
+#    }
+    variants(start:"10", end:"100200") {
+      variantSetId
+    	start
+    	end
+    	filtersApplied
+    	filtersPassed
+    	referenceBases
+    	names
+    	alternateBases
+    	referenceName
+    	id
+      calls {
+        callSetName
+        genotype
+        callSetId
+        phaseset
+      }
+
+    }
+
+  }
+}
+
+query{
+  patients(
+      conditionCode: "53741008",
+      allergyInteranceCode:"300913006"
+  		observationCode: "4548-4"
+  		procedureCode: "73761001") {
+    resourceType
+    id
+    gender
+    deceasedDateTime
+    birthDate
+    resourceType
+    name{
+      use
+      family
+      given
+    }
+#    extension {
+#      url
+#      valueCodeableConcept {
+#        text
+#        coding {
+#          system
+#          code
+#          display
+#        }
+#      }
+#    }
+    variants(start:"10", end:"13011") {
+      variantSetId
+    	start
+    	end
+    	filtersApplied
+    	filtersPassed
+    	referenceBases
+    	names
+    	alternateBases
+    	referenceName
+    	id
+      calls{
+        callSetName
+        genotype
+        callSetId
+        phaseset
+      }
+
+    }
+
+  }
+}
