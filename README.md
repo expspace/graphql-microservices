@@ -21,11 +21,12 @@ mongorestore dump
 
 ### TODOs
 
-- [ ] include graphql query examples
+- [x] include graphql query examples
 - [ ] containerize GA4GH
 - [ ] init script for service endpoint configuration 
-- [ ] init script for gofhir to ga4gh ID map 
-- [ ] architecture diagram 
+- [x] init script for gofhir to ga4gh ID map 
+- [ ] architecture diagram
+- [ ] incorporate third service 
 
 ### Known issues
 
