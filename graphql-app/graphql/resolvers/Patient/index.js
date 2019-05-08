@@ -1,13 +1,13 @@
 
 // The User schema.
-// import PatientService from "../../../services/patient-nodemongo";
 import PatientService from "../../../services/patient-gofhir";
 import VariantService from "../../../services/variant-ga4gh";
+import {GOFHIR_ID_TO_GA4GH_CALLSET_ID_MAP} from "../../../gofhir-ga4gh-id-map";
+
 
 export default {
     Query: {
         patient(_, args) {
-            // console.log('patient resolver');
             return PatientService.getPatient(args);
         },
 
@@ -18,8 +18,8 @@ export default {
 
     Patient: {
         variants(patient, args) {
-            // console.log('variant resolver');
-            return VariantService.getVariants(patient, args);
+            let callSetId = GOFHIR_ID_TO_GA4GH_CALLSET_ID_MAP[patient.id];
+            return VariantService.getVariants(callSetId, args);
         },
     },
 
