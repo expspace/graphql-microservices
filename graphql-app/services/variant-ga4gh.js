@@ -1,17 +1,17 @@
 var rp = require('request-promise');
-var baseUrls = require('../config').BASE_SERVICE_URLS;
-var constants = require('../constants');
+var baseUrls = require('../config').baseServiceUrls;
+var {variantSetId, referenceName} = require('../config');
 
 export default {
     getVariants(callSetId, args) {
 
         let options = {
             method: "POST",
-            uri: `${baseUrls.localGA4GH}variants/search`,
+            uri: `${baseUrls.localGA4GH}/variants/search`,
             body: {
-                variantSetId: constants.VARIANT_SET_ID,
+                variantSetId: variantSetId,
                 callSetIds: [callSetId],
-                referenceName : constants.REFERENCE_NAME,
+                referenceName : referenceName,
                 start: args.start,
                 end: args.end
             },

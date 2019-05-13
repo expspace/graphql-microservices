@@ -1,5 +1,5 @@
 var rp = require('request-promise');
-var baseUrls = require('../config').BASE_SERVICE_URLS;
+var baseUrls = require('../config').baseServiceUrls;
 var paramToResourceMap = require('../constants').GQL_PARAM_TO_RESOURCE_MAP;
 
 export default {
