@@ -1,14 +1,24 @@
 export default `
+  type PatientQueryResponse {
+    patient_count: Int
+    variant_count: Int
+    gofhir_response_time: Int
+    ga4gh_response_time: Int
+    patients: [Patient]
+    variants: [Variant]
+  }
+  
   type Patient {
     resourceType: String
     id: String!
+    callSetId: String
     gender: String!
     active: Boolean
     extension: [Extension]
     deceasedDateTime: String
     birthDate: String
     name: [Name]
-    variants(start: String!, end: String!): [Variant]
+    variants: [Variant]
   }
   
   type Name {
@@ -20,7 +30,6 @@ export default `
   type Extension {
     url: String
     valueCodeableConcept : ValueCodeableConcept
-
   }
   
   type ValueCodeableConcept {
@@ -36,13 +45,15 @@ export default `
   
   type Query {
     patient(id: String!): Patient
-    patients(
+    patients_query(
         conditionCode: String,
         observationCode: String,
         procedureCode: String,
         allergyInteranceCode: String,                
-     ): [Patient]
-  }
+        start: String,
+        end: String      
+     ): PatientQueryResponse
+  }   
 `;
 
 

@@ -14,15 +14,18 @@ export default {
         let url = `${baseUrls.localGofhir}/Patient` + (query? `?${query}`: "");
 
         return rp(url)
-            .then(response => JSON.parse(response))
-            .then(response => response.entry.map(patient => patient.resource));
+            .then(response => {console.log(response); return JSON.parse(response)})
+            .then(response => response.entry.map(patient => patient.resource))
+            .then(res => { console.log(res.length); return res})
     }
 }
 
 function prepQueryString(args) {
     let queryArray = [];
     for(var key in args) {
-        queryArray.push(`_has:${paramToResourceMap[key]}:patient:code=${args[key]}`);
+        if(key in paramToResourceMap) {
+            queryArray.push(`_has:${paramToResourceMap[key]}:patient:code=${args[key]}`);
+        }
     }
     return queryArray.join('&');
 }

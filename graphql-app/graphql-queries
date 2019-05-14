@@ -1,79 +1,46 @@
 query{
-  patient(id: "5c8518d9e240900001077865"){
-    resourceType
-    id
-    gender
-    deceasedDateTime
-    birthDate
-    resourceType
-    name {
-      use
-      family
-      given
-    }
-#    extension {
-#      url
-#      valueCodeableConcept {
-#        text
-#        coding {
-#          system
-#          code
-#          display
-#        }
-#      }
-#    }
-    variants(start:"10", end:"100200") {
-      variantSetId
-    	start
-    	end
-    	filtersApplied
-    	filtersPassed
-    	referenceBases
-    	names
-    	alternateBases
-    	referenceName
-    	id
-      calls {
-        callSetName
-        genotype
-        callSetId
-        phaseset
-      }
-
-    }
-
-  }
-}
-
-query{
-  patients(
+  patients_query (
       conditionCode: "53741008",
       allergyInteranceCode:"300913006"
-  		observationCode: "4548-4"
-  		procedureCode: "73761001") {
-    resourceType
-    id
-    gender
-    deceasedDateTime
-    birthDate
-    resourceType
-    name{
-      use
-      family
-      given
-    }
-#    extension {
-#      url
-#      valueCodeableConcept {
-#        text
-#        coding {
-#          system
-#          code
-#          display
+  		#observationCode: "4548-4",
+  		procedureCode: "73761001",
+
+  		start:"10",
+      end:"130110") {
+
+    patient_count
+    variant_count
+
+    gofhir_response_time
+    ga4gh_response_time
+
+    patients {
+      resourceType
+      id
+      callSetId
+      gender
+      deceasedDateTime
+      birthDate
+      resourceType
+      name {
+        use
+        family
+        given
+      }
+#      extension {
+#        url
+#        valueCodeableConcept {
+#          text
+#          coding {
+#            system
+#            code
+#            display
+#          }
 #        }
 #      }
-#    }
-    variants(start:"10", end:"13011") {
+    }
+
+    variants {
       variantSetId
     	start
     	end
@@ -90,8 +57,6 @@ query{
         callSetId
         phaseset
       }
-
     }
-
   }
 }

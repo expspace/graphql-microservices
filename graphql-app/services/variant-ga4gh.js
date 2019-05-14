@@ -3,14 +3,14 @@ var baseUrls = require('../config').baseServiceUrls;
 var {variantSetId, referenceName} = require('../config');
 
 export default {
-    getVariants(callSetId, args) {
+    getVariants(callSetIds, args) {
 
         let options = {
             method: "POST",
             uri: `${baseUrls.localGA4GH}/variants/search`,
             body: {
                 variantSetId: variantSetId,
-                callSetIds: [callSetId],
+                callSetIds: callSetIds,
                 referenceName : referenceName,
                 start: args.start,
                 end: args.end
