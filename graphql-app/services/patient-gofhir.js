@@ -1,17 +1,17 @@
 var rp = require('request-promise');
-var baseUrls = require('../config').baseServiceUrls;
+var {baseServiceUrls} = require('../config');
 var paramToResourceMap = require('../constants').GQL_PARAM_TO_RESOURCE_MAP;
 
 export default {
     getPatient(args) {
-        return rp(`${baseUrls.localGofhir}/Patient/${args.id}`)
+        return rp(`${baseServiceUrls.localGofhir}/Patient/${args.id}`)
             .then(response => JSON.parse(response));
     },
 
     getPatients(args) {
         let query = prepQueryString(args);
 
-        let url = `${baseUrls.localGofhir}/Patient` + (query? `?${query}`: "");
+        let url = `${baseServiceUrls.localGofhir}/Patient` + (query? `?${query}`: "");
 
         return rp({time: true, url: url, resolveWithFullResponse: true})
             .then(response => {

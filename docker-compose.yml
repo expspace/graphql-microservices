@@ -21,12 +21,9 @@ services:
       - mongo
 
   graphql-app:
+    network_mode: host
     container_name: graphql-app
     restart: always
     build: ./graphql-app
     ports:
       - "8004:8004"
-    links:
-      - gofhir
-    depends_on:
-      - gofhir
