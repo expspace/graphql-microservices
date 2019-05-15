@@ -1,5 +1,5 @@
 var rp = require('request-promise');
-var {baseServiceUrls} = require('../config');
+var {baseServiceUrls, maxPageSize} = require('../config');
 var paramToResourceMap = require('../constants').GQL_PARAM_TO_RESOURCE_MAP;
 
 export default {
@@ -11,7 +11,7 @@ export default {
     getPatients(args) {
         let query = prepQueryString(args);
 
-        let url = `${baseServiceUrls.localGofhir}/Patient` + (query? `?${query}`: "");
+        let url = `${baseServiceUrls.localGofhir}/Patient?_count=${maxPageSize}` + (query? `&${query}`: "");
 
         return rp({time: true, url: url, resolveWithFullResponse: true})
             .then(response => {

@@ -1,5 +1,5 @@
 var rp = require('request-promise');
-var {baseServiceUrls, variantSetId, referenceName} = require('../config');
+var {baseServiceUrls, variantSetId, referenceName, maxPageSize} = require('../config');
 
 export default {
     getVariants(callSetIds, args) {
@@ -12,7 +12,8 @@ export default {
                 callSetIds: callSetIds,
                 referenceName : referenceName,
                 start: args.start,
-                end: args.end
+                end: args.end,
+                pageSize: maxPageSize
             },
             json: true,
             time: true,

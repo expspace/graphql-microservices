@@ -1,12 +1,14 @@
 query{
   patients_query (
-      conditionCode: "53741008",
-      allergyInteranceCode:"300913006"
-  		#observationCode: "4548-4",
-  		procedureCode: "73761001",
+    #filter patients
+    conditionCode: "53741008",
+    allergyInteranceCode:"300913006"
+    observationCode: "4548-4",
+  	procedureCode: "73761001",
 
-  		start:"10",
-      end:"130110") {
+    #filter variants
+  	start:"10",
+    end:"10177000000") {
 
     patient_count
     variant_count
@@ -14,6 +16,7 @@ query{
     gofhir_response_time
     ga4gh_response_time
 
+    #gofhir patient data
     patients {
       resourceType
       id
@@ -40,6 +43,7 @@ query{
 #      }
     }
 
+    #ga4gh variant data
     variants {
       variantSetId
     	start
