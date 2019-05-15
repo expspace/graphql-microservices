@@ -13,19 +13,20 @@ export default {
 
         async patients_query(_, args) {
 
-            let patientList = await PatientService.getPatients(args);
+            let {elapsedTimeGofhir, patientList} = await PatientService.getPatients(args);
+
             patientList.forEach(patient => {
                 patient.callSetId = GOFHIR_ID_TO_GA4GH_CALLSET_ID_MAP[patient.id];
             });
 
             let callSetIds = patientList.map(patient => GOFHIR_ID_TO_GA4GH_CALLSET_ID_MAP[patient.id]);
-            let variantList = await VariantService.getVariants(callSetIds, args);
-
-
+            let {elapsedTimeGa4gh, variantList} = await VariantService.getVariants(callSetIds, args);
 
             return {
                 patient_count : patientList.length,
                 variant_count: variantList.length,
+                gofhir_response_time: elapsedTimeGofhir,
+                ga4gh_response_time: elapsedTimeGa4gh,
                 patients : patientList,
                 variants : variantList
             };

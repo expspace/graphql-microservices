@@ -13,10 +13,13 @@ export default {
 
         let url = `${baseUrls.localGofhir}/Patient` + (query? `?${query}`: "");
 
-        return rp(url)
-            .then(response => {console.log(response); return JSON.parse(response)})
-            .then(response => response.entry.map(patient => patient.resource))
-            .then(res => { console.log(res.length); return res})
+        return rp({time: true, url: url, resolveWithFullResponse: true})
+            .then(response => {
+                return {
+                    elapsedTimeGofhir : response.elapsedTime,
+                    patientList : JSON.parse(response.body).entry.map(patient => patient.resource)
+                }
+            })
     }
 }
 

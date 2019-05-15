@@ -15,10 +15,16 @@ export default {
                 start: args.start,
                 end: args.end
             },
-            json: true
+            json: true,
+            time: true,
+            resolveWithFullResponse: true
         };
 
         return rp(options)
-            .then(res => res.variants)
+            .then(res => {
+                return {
+                    variantList: res.body.variants,
+                    elapsedTimeGa4gh: res.elapsedTime
+                }})
     },
 }
