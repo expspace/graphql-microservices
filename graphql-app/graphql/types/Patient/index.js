@@ -5,6 +5,7 @@ export default `
     gofhir_response_time: Int
     ga4gh_response_time: Int
     patients: [Patient]
+    variantNextPageToken: String
     variants: [Variant]
   }
   
@@ -49,9 +50,11 @@ export default `
         conditionCode: String,
         observationCode: String,
         procedureCode: String,
-        allergyInteranceCode: String,                
+        allergyInteranceCode: String,   
+                     
         start: String,
-        end: String      
+        end: String,
+        pageToken: String      
      ): PatientQueryResponse
   }   
 `;

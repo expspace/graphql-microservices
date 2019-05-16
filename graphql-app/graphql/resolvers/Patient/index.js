@@ -20,7 +20,7 @@ export default {
             });
 
             let callSetIds = patientList.map(patient => GOFHIR_ID_TO_GA4GH_CALLSET_ID_MAP[patient.id]);
-            let {elapsedTimeGa4gh, variantList} = await VariantService.getVariants(callSetIds, args);
+            let {elapsedTimeGa4gh, nextPageToken, variantList} = await VariantService.getVariants(callSetIds, args);
 
             return {
                 patient_count : patientList.length,
@@ -28,6 +28,7 @@ export default {
                 gofhir_response_time: elapsedTimeGofhir,
                 ga4gh_response_time: elapsedTimeGa4gh,
                 patients : patientList,
+                variantNextPageToken : nextPageToken,
                 variants : variantList
             };
         },

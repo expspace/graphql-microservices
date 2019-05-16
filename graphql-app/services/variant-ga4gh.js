@@ -13,7 +13,8 @@ export default {
                 referenceName : referenceName,
                 start: args.start,
                 end: args.end,
-                pageSize: maxPageSize
+                pageSize: maxPageSize,
+                pageToken: args.pageToken
             },
             json: true,
             time: true,
@@ -23,8 +24,9 @@ export default {
         return rp(options)
             .then(res => {
                 return {
-                    variantList: res.body.variants,
-                    elapsedTimeGa4gh: res.elapsedTime
+                    elapsedTimeGa4gh: res.elapsedTime,
+                    nextPageToken: res.body.nextPageToken,
+                    variantList: res.body.variants
                 }})
     },
 }
