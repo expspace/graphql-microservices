@@ -50,7 +50,7 @@ export default `
         conditionCode: String,
         observationCode: String,
         procedureCode: String,
-        allergyInteranceCode: String,   
+        allergyIntoleranceCode: String,   
                      
         start: String,
         end: String,

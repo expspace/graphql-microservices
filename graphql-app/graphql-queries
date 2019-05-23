@@ -1,10 +1,11 @@
 query{
   patients_query (
     #filter patients
-    conditionCode: "53741008",
-    allergyInteranceCode:"300913006"
-    observationCode: "4548-4",
-  	procedureCode: "73761001",
+    conditionCode: "53741008"
+    allergyIntoleranceCode:"300913006"
+    observationCode: "4548-4"
+  	procedureCode: "73761001"
+
 
     #filter variants
   	start:"10",
