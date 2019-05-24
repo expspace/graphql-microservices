@@ -6,10 +6,9 @@ query{
     observationCode: "4548-4"
   	procedureCode: "73761001"
 
-
     #filter variants
-  	start:"10",
-    end:"10177000000",
+  	start:"10"
+    end:"10177",
   	pageToken: "0:0") {
 
     patient_count
@@ -47,7 +46,6 @@ query{
 
     #ga4gh variant data
     variantNextPageToken
-
     variants {
       variantSetId
     	start
@@ -65,6 +63,17 @@ query{
         callSetId
         phaseset
       }
+    }
+
+    #rnaget expression data
+    rnaExpressions {
+      expression {
+        sampleId
+        values
+      }
+      features
+      units
+      study
     }
   }
 }

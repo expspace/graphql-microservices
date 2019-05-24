@@ -4,9 +4,13 @@ export default `
     variant_count: Int
     gofhir_response_time: Int
     ga4gh_response_time: Int
+    
     patients: [Patient]
+    
     variantNextPageToken: String
     variants: [Variant]
+    
+    rnaExpressions: Expression
   }
   
   type Patient {
