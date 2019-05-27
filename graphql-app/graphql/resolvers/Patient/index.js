@@ -13,7 +13,7 @@ export default {
             return PatientService.getPatient(args);
         },
 
-        async patients_query(_, args) {
+        async filter_patients(_, args) {
 
             let {elapsedTimeGofhir, patientList} = await PatientService.getPatients(args);
 

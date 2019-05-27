@@ -1,17 +1,17 @@
 query{
-  patients_query (
+  filter_patients (
     #filter patients
-    conditionCode: "53741008"           # code
-    allergyIntoleranceCode:"300913006"  # code
-    observationCode: "4548-4"           # code
-  	procedureCode: "73761001"           # code
+    conditionCode: "53741008"           # Coronary Heart Disease
+    allergyIntoleranceCode:"300913006"  # Shellfish allergy
+    observationCode: "4548-4"           # Hemoglobin A1c/Hemoglobin.total in Blood (6.1%)
+  	procedureCode: "73761001"           # Colonoscopy
 
-    #filter variants
+    #select variant data
   	start:"10"
     end:"101770",
   	pageToken: "0:0"
 
-  	#filter rna expression
+  	#select rna expression data
     featureIDs:[
       "ENSG00000000003"   # gene
       "ENSG00000000005"   # gene

@@ -51,7 +51,7 @@ export default `
   
   type Query {
     patient(id: String!): Patient
-    patients_query(
+    filter_patients(
         conditionCode: String,
         observationCode: String,
         procedureCode: String,
