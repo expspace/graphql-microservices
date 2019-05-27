@@ -3,7 +3,8 @@
 import PatientService from "../../../services/patient-gofhir";
 import VariantService from "../../../services/variant-ga4gh";
 import ExpressionService from "../../../services/expression-rnaget";
-import {GOFHIR_ID_TO_GA4GH_CALLSET_ID_MAP} from "../../../gofhir-ga4gh-id-map";
+import {GOFHIR_ID_TO_GA4GH_CALLSET_ID_MAP} from "../../../service-id-map";
+import {GOFHIR_ID_TO_RNAGET_SAMPLE_ID_MAP} from "../../../service-id-map";
 
 
 export default {
@@ -16,9 +17,12 @@ export default {
 
             let {elapsedTimeGofhir, patientList} = await PatientService.getPatients(args);
 
+            let sampleIdList = [];
+
             patientList.forEach(patient => {
                 patient.callSetId = GOFHIR_ID_TO_GA4GH_CALLSET_ID_MAP[patient.id];
-                //TODO set sampleId
+                patient.sampleId = GOFHIR_ID_TO_RNAGET_SAMPLE_ID_MAP[patient.id];
+                sampleIdList.push(GOFHIR_ID_TO_RNAGET_SAMPLE_ID_MAP[patient.id]);
             });
 
             let callSetIds = patientList.map(patient => GOFHIR_ID_TO_GA4GH_CALLSET_ID_MAP[patient.id]);
@@ -29,7 +33,7 @@ export default {
             let {elapsedTimeGa4gh, nextPageToken, variantList} = results[0];
 
             let rnagetExpressions = results[1];
-            //TODO filter rnagetExpressions with patientList
+            rnagetExpressions.expression = rnagetExpressions.expression.filter(sample => sampleIdList.includes(sample.sampleId));
 
             return {
                 patient_count : patientList.length,

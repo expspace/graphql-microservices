@@ -17,6 +17,7 @@ export default `
     resourceType: String
     id: String!
     callSetId: String
+    sampleId: String
     gender: String!
     active: Boolean
     extension: [Extension]

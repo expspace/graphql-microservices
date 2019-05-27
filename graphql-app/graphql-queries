@@ -32,6 +32,7 @@ query{
       resourceType
       id
       callSetId
+      sampleId
       gender
       deceasedDateTime
       birthDate
