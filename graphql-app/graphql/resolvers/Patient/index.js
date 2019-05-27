@@ -18,12 +18,18 @@ export default {
 
             patientList.forEach(patient => {
                 patient.callSetId = GOFHIR_ID_TO_GA4GH_CALLSET_ID_MAP[patient.id];
+                //TODO set sampleId
             });
 
             let callSetIds = patientList.map(patient => GOFHIR_ID_TO_GA4GH_CALLSET_ID_MAP[patient.id]);
-            let {elapsedTimeGa4gh, nextPageToken, variantList} = await VariantService.getVariants(callSetIds, args);
 
-            let rnagetExpressions = await ExpressionService.getExpression();
+            let results = await Promise.all([VariantService.getVariants(callSetIds, args),
+                ExpressionService.getExpression(args.featureIDs)]);
+
+            let {elapsedTimeGa4gh, nextPageToken, variantList} = results[0];
+
+            let rnagetExpressions = results[1];
+            //TODO filter rnagetExpressions with patientList
 
             return {
                 patient_count : patientList.length,

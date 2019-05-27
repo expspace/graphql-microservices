@@ -2,9 +2,10 @@ var rp = require('request-promise');
 var {baseServiceUrls, rnagetApiKey} = require('../config');
 
 export default {
-    getExpression(args) {
+    getExpression(featureIDs) {
+        let query = prepQueryString(featureIDs);
 
-        let url = `${baseServiceUrls.deployedRnaget}/expressions/search?minExpression=ENSG00000000003%2C30%2CENSG00000000005%2C10&featureThresholdLabel=id`;
+        let url = `${baseServiceUrls.deployedRnaget}/expressions/search?${query}`;
 
         let options = {
             method: "GET",
@@ -21,7 +22,7 @@ export default {
             .then(res => rp(res[0].URL)) //TODO fetch json from all studies in array - only fetching first study for demo purposes
             .then(JSON.parse)
             .then(setNonDynamicKeys)
-        
+
     },
 }
 
@@ -37,12 +38,14 @@ function setNonDynamicKeys(rnagetResponse) {
     return rnagetResponse;
 }
 
-// function prepQueryString(args) {
-//     let queryArray = [];
-//     for(var key in args) {
-//         if(key in paramToResourceMap) {
-//             queryArray.push(`_has:${paramToResourceMap[key]}:patient:code=${args[key]}`);
-//         }
-//     }
-//     return queryArray.join('&');
-// }
+function prepQueryString(featureIDs) {
+    let queryArray = [];
+
+    if(featureIDs) {
+        queryArray.push('featureIDList=' + featureIDs.join(','));
+    }
+    queryArray.push('featureThresholdLabel=id');
+    queryArray.push('output=json');
+
+    return queryArray.join('&');
+}

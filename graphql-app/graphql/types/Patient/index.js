@@ -58,7 +58,9 @@ export default `
                      
         start: String,
         end: String,
-        pageToken: String      
+        pageToken: String
+        
+        featureIDs: [String]
      ): PatientQueryResponse
   }   
 `;

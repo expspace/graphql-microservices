@@ -1,15 +1,25 @@
 query{
   patients_query (
     #filter patients
-    conditionCode: "53741008"
-    allergyIntoleranceCode:"300913006"
-    observationCode: "4548-4"
-  	procedureCode: "73761001"
+    conditionCode: "53741008"           # code
+    allergyIntoleranceCode:"300913006"  # code
+    observationCode: "4548-4"           # code
+  	procedureCode: "73761001"           # code
 
     #filter variants
   	start:"10"
-    end:"10177",
-  	pageToken: "0:0") {
+    end:"101770",
+  	pageToken: "0:0"
+
+  	#filter rna expression
+    featureIDs:[
+      "ENSG00000000003"   # gene
+      "ENSG00000000005"   # gene
+      "ENSG00000000419"   # gene
+      "ENSG00000001497"   # gene
+    ]
+
+  	) {
 
     patient_count
     variant_count
