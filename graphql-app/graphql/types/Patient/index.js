@@ -52,18 +52,28 @@ export default `
   type Query {
     patient(id: String!): Patient
     filter_patients(
-        conditionCode: String,
-        observationCode: String,
-        procedureCode: String,
-        allergyIntoleranceCode: String,   
-                     
-        start: String,
-        end: String,
-        pageToken: String
-        
-        featureNameList: [String]
-     ): PatientQueryResponse
-  }   
+      gofhirInput: GofhirInput
+      ga4ghInput: Ga4ghInput                 
+      rnagetInput: RnagetInput        
+    ): PatientQueryResponse
+  }
+  
+  input GofhirInput {
+    conditionCode: String
+    observationCode: String
+    procedureCode: String
+    allergyIntoleranceCode: String     
+  } 
+  
+  input Ga4ghInput {
+    start: String
+    end: String
+    pageToken: String
+  }  
+  
+  input RnagetInput {
+    featureNameList: [String]
+  }  
 `;
 
 

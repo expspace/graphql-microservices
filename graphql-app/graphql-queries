@@ -1,22 +1,14 @@
-query{
+query($gofhirInput:GofhirInput, $ga4ghInput:Ga4ghInput, $rnagetInput:RnagetInput){
   filter_patients (
-    #filter patients
-    conditionCode: "53741008"           # Coronary Heart Disease
-    allergyIntoleranceCode:"300913006"  # Shellfish allergy
-    observationCode: "4548-4"           # Hemoglobin A1c/Hemoglobin.total in Blood (6.1%)
-  	procedureCode: "73761001"           # Colonoscopy
 
-    #select variant data
-  	start:"10"
-    end:"101770"
-  	pageToken: "0:0"
+    # conditionCode - Coronary Heart Disease
+    # allergyIntoleranceCode - Shellfish allergy
+    # observationCode - Hemoglobin A1c/Hemoglobin.total in Blood (6.1%)
+    # procedureCode - Colonoscopy
 
-  	#select rna expression data
-    featureNameList:[
-      "A1BG"    # gene
-      "BRCA1"   # gene
-      "BRCA2"   # gene
-    ]
+    gofhirInput: $gofhirInput   # filter patients
+    ga4ghInput: $ga4ghInput     # select variant data
+    rnagetInput: $rnagetInput   # select rna expression data
 
   	) {
 
@@ -85,5 +77,26 @@ query{
       units
       study
     }
+  }
+}
+
+{
+  "gofhirInput": {
+    "conditionCode": "53741008",
+    "allergyIntoleranceCode": "300913006",
+    "observationCode": "4548-4",
+    "procedureCode": "73761001"
+  },
+  "ga4ghInput": {
+    "start": "10",
+    "end": "101770",
+    "pageToken": "0:0"
+  },
+  "rnagetInput": {
+    "featureNameList": [
+      "A1BG",
+      "BRCA1",
+      "BRCA2"
+    ]
   }
 }

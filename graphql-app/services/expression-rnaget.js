@@ -2,8 +2,8 @@ var rp = require('request-promise');
 var {baseServiceUrls, rnagetApiKey} = require('../config');
 
 export default {
-    getExpressions(featureNameList) {
-        let query = prepQueryString(featureNameList);
+    getExpressions(rnagetInput) {
+        let query = prepQueryString(rnagetInput.featureNameList);
 
         let url = `${baseServiceUrls.deployedRnaget}/expressions/search?${query}`;
 

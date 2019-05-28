@@ -14,8 +14,7 @@ export default {
         },
 
         async filter_patients(_, args) {
-
-            let {elapsedTimeGofhir, patientList} = await PatientService.getPatients(args);
+            let {elapsedTimeGofhir, patientList} = await PatientService.getPatients(args.gofhirInput);
 
             let sampleIdList = [];
 
@@ -27,8 +26,8 @@ export default {
 
             let callSetIds = patientList.map(patient => GOFHIR_ID_TO_GA4GH_CALLSET_ID_MAP[patient.id]);
 
-            let results = await Promise.all([VariantService.getVariants(callSetIds, args),
-                ExpressionService.getExpressions(args.featureNameList)]);
+            let results = await Promise.all([VariantService.getVariants(callSetIds, args.ga4ghInput),
+                ExpressionService.getExpressions(args.rnagetInput)]);
 
             let {elapsedTimeGa4gh, nextPageToken, variantList} = results[0];
 

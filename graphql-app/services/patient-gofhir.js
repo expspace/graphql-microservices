@@ -8,8 +8,8 @@ export default {
             .then(response => JSON.parse(response));
     },
 
-    getPatients(args) {
-        let query = prepQueryString(args);
+    getPatients(gofhirInput) {
+        let query = prepQueryString(gofhirInput);
 
         let url = `${baseServiceUrls.localGofhir}/Patient?_count=${maxPageSize}` + (query? `&${query}`: "");
 
