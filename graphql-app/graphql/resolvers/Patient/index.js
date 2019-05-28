@@ -32,7 +32,9 @@ export default {
             let {elapsedTimeGa4gh, nextPageToken, variantList} = results[0];
 
             let rnagetExpressions = results[1];
-            rnagetExpressions.expression = rnagetExpressions.expression.filter(sample => sampleIdList.includes(sample.sampleId));
+            if(rnagetExpressions) {
+                rnagetExpressions.expression = rnagetExpressions.expression.filter(sample => sampleIdList.includes(sample.sampleId));
+            }
 
             return {
                 patient_count : patientList.length,

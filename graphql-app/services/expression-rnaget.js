@@ -22,6 +22,7 @@ export default {
             .then(res => rp(res[0].URL)) //TODO fetch json from all studies in array - only fetching first study for demo purposes
             .then(JSON.parse)
             .then(setNonDynamicKeys)
+            .catch(error => console.log(error))
 
     },
 }
