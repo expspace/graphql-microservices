@@ -8,15 +8,14 @@ query{
 
     #select variant data
   	start:"10"
-    end:"101770",
+    end:"101770"
   	pageToken: "0:0"
 
   	#select rna expression data
-    featureIDs:[
-      "ENSG00000000003"   # gene
-      "ENSG00000000005"   # gene
-      "ENSG00000000419"   # gene
-      "ENSG00000001497"   # gene
+    featureNameList:[
+      "A1BG"    # gene
+      "BRCA1"   # gene
+      "BRCA2"   # gene
     ]
 
   	) {

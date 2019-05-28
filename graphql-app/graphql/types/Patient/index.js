@@ -61,7 +61,7 @@ export default `
         end: String,
         pageToken: String
         
-        featureIDs: [String]
+        featureNameList: [String]
      ): PatientQueryResponse
   }   
 `;

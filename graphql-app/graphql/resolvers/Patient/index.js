@@ -28,7 +28,7 @@ export default {
             let callSetIds = patientList.map(patient => GOFHIR_ID_TO_GA4GH_CALLSET_ID_MAP[patient.id]);
 
             let results = await Promise.all([VariantService.getVariants(callSetIds, args),
-                ExpressionService.getExpression(args.featureIDs)]);
+                ExpressionService.getExpressions(args.featureNameList)]);
 
             let {elapsedTimeGa4gh, nextPageToken, variantList} = results[0];
 

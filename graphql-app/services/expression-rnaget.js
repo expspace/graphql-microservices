@@ -2,8 +2,8 @@ var rp = require('request-promise');
 var {baseServiceUrls, rnagetApiKey} = require('../config');
 
 export default {
-    getExpression(featureIDs) {
-        let query = prepQueryString(featureIDs);
+    getExpressions(featureNameList) {
+        let query = prepQueryString(featureNameList);
 
         let url = `${baseServiceUrls.deployedRnaget}/expressions/search?${query}`;
 
@@ -38,13 +38,13 @@ function setNonDynamicKeys(rnagetResponse) {
     return rnagetResponse;
 }
 
-function prepQueryString(featureIDs) {
+function prepQueryString(featureNameList) {
     let queryArray = [];
 
-    if(featureIDs) {
-        queryArray.push('featureIDList=' + featureIDs.join(','));
+    if(featureNameList) {
+        queryArray.push('featureNameList=' + featureNameList.join(','));
     }
-    queryArray.push('featureThresholdLabel=id');
+    queryArray.push('featureThresholdLabel=name');
     queryArray.push('output=json');
 
     return queryArray.join('&');
