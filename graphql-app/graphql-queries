@@ -1,15 +1,8 @@
 query($gofhirInput:GofhirInput, $ga4ghInput:Ga4ghInput, $rnagetInput:RnagetInput){
   filter_patients (
-
-    # conditionCode - Coronary Heart Disease
-    # allergyIntoleranceCode - Shellfish allergy
-    # observationCode - Hemoglobin A1c/Hemoglobin.total in Blood (6.1%)
-    # procedureCode - Colonoscopy
-
     gofhirInput: $gofhirInput   # filter patients
     ga4ghInput: $ga4ghInput     # select variant data
     rnagetInput: $rnagetInput   # select rna expression data
-
   	) {
 
     patient_count
@@ -80,6 +73,13 @@ query($gofhirInput:GofhirInput, $ga4ghInput:Ga4ghInput, $rnagetInput:RnagetInput
   }
 }
 
+#### SAMPLE INPUT PARAMETERS FOR DEMONSTRATION ###
+
+# conditionCode - Coronary Heart Disease
+# allergyIntoleranceCode - Shellfish allergy
+# observationCode - Hemoglobin A1c/Hemoglobin.total in Blood (6.1%)
+# procedureCode - Colonoscopy
+
 {
   "gofhirInput": {
     "conditionCode": "53741008",
@@ -97,6 +97,32 @@ query($gofhirInput:GofhirInput, $ga4ghInput:Ga4ghInput, $rnagetInput:RnagetInput
       "A1BG",
       "BRCA1",
       "BRCA2"
+    ]
+  }
+}
+
+
+# conditionCode - Prediabetes
+# allergyIntoleranceCode - Allergy to peanuts
+# observationCode - Glucose 66.0 mg/dL
+
+{
+  "gofhirInput": {
+    "conditionCode": "15777000",
+    "allergyIntoleranceCode": "91935009",
+    "observationCode": "2339-0"
+  },
+  "ga4ghInput": {
+    "start": "111770",
+    "end": "521770",
+    "pageToken": "0:0"
+  },
+  "rnagetInput": {
+    "featureNameList": [
+      "CAT",
+      "FTO",
+      "UCP1",
+      "ADIPOQ"
     ]
   }
 }
