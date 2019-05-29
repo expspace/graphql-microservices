@@ -126,3 +126,23 @@ query($gofhirInput:GofhirInput, $ga4ghInput:Ga4ghInput, $rnagetInput:RnagetInput
     ]
   }
 }
+
+
+# conditionCode
+38341003 - Hypertension
+40055000 - Chronic sinusitis (disorder)
+109838007 - Overlapping malignant neoplasm of colon
+
+
+# allergyIntoleranceCode
+424213003 - Allergy to bee venom
+232350006 - House dust mite allergy
+
+# observationCode
+49765-1 - Calcium 9.19991429855419 mg/dL
+
+# procedureCode
+76601001 - Intramuscular injection
+65588006 - Premature birth of newborn
+
+
