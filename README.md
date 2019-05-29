@@ -1,7 +1,14 @@
 ### GraphQL-microservices
 
-GraphQL API layer which is used to combine data from separate microservices. Queries for patient data are first sent to a [gofhir](https://github.com/synthetichealth/gofhir)
-server and then individual variant information is sent to the [ga4gh](https://github.com/ga4gh/ga4gh-server) API.  
+GraphQL API layer which is used to combine data from separate microservices. Queries for FHIR patient 
+metadata are first sent to a [gofhir](https://github.com/synthetichealth/gofhir) server and can be 
+filtered based on condition, allergy intolerance, procedure or observation. Variant and rna expression 
+data are then requested from [ga4gh](https://github.com/ga4gh/ga4gh-server) and [rnaget](https://github.com/CanDIG/rnaget_service) 
+services respectively.  
+
+### Architecture
+
+![candig-query-arch-diagram](diagram/CanDIG-query%20-%20architecture-diagram.png)
 
 ### Installation
 ```
@@ -11,7 +18,8 @@ sudo docker-compose up
 ```
 ### FHIR DB 
 
-To load the clinical data (taken from the Synthetic Mass subsample of 1000 synthetic patients), run the following:
+To load the clinical data (taken from the Synthetic Mass subsample of 1000 synthetic patients), run 
+the following:
 
 ```
 cd data/ingest
@@ -21,7 +29,8 @@ mongorestore dump
 
 ### Installation ga4gh-server
 
-To install ga4gh-server in a virtual environment use the following instructions which are based on https://ga4gh-server.readthedocs.io/en/latest/demo.html
+To install ga4gh-server in a virtual environment use the following instructions which are based on 
+https://ga4gh-server.readthedocs.io/en/latest/demo.html
 
 ```
 mkdir -p ~/ga4gh/server/templates
@@ -47,7 +56,8 @@ source ga4gh-env/bin/activate
 
 ### ga4gh 1000 genomes variant data
 
-Using the [ga4gh data repository](https://ga4gh-server.readthedocs.io/en/latest/datarepo.html) load the 1000 genome variant dataset into ga4gh_server
+Using the [ga4gh data repository](https://ga4gh-server.readthedocs.io/en/latest/datarepo.html) load the 1000 genome 
+variant dataset into ga4gh_server
 
 From virtualenv create the registry and dataset
 
@@ -75,21 +85,23 @@ ga4gh_repo add-variantset registry.db 1kgenomes /full/path/to/release-1000-genom
 
 ```
 
-### Map gofhir and ga4gh IDs
-Map the FHIR patient record IDs to ga4gh callset IDs
+### Initialize ID mapping 
+Map the gofhir patient record IDs to ga4gh call set IDs and rnaget sample IDs
 ``` 
 node scripts/initialize-id-map.js
 ```
 
-
 ### TODOs
 
-- [x] include graphql query examples
 - [ ] containerize GA4GH
-- [ ] init script for service endpoint configuration 
+- [ ] containerize rnaget 
+- [x] include graphql query examples
 - [x] init script for gofhir to ga4gh ID map 
-- [ ] architecture diagram
-- [ ] incorporate third service 
+- [x] architecture diagram
+- [x] incorporate third service 
 
 ### Known issues
+
+Patient queries to latest gofhir version (used in docker compose) are really slow. Was able to work around by using an older 
+version of [gofhir](https://github.com/synthetichealth/gofhir/tree/8f01482a931d75d81031c666f44cbe35a223b826)  
 
