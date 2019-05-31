@@ -90,6 +90,11 @@ Map the gofhir patient record IDs to ga4gh call set IDs and rnaget sample IDs
 ``` 
 node scripts/initialize-id-map.js
 ```
+### Add .env 
+```
+RNAGET_API_KEY=...
+```
+
 
 ### TODOs
 

@@ -1,3 +1,5 @@
+var dotenv = require('dotenv').config();
+
 module.exports = {
      baseServiceUrls : {
           localGA4GH : 'http://localhost:8000',
@@ -15,5 +17,5 @@ module.exports = {
 
      maxPageSize : 500,
 
-     rnagetApiKey : '5b1ec688b811066e6a964de023df409732b44fb48ed0969239873058'
+     rnagetApiKey : process.env.RNAGET_API_KEY
 };
